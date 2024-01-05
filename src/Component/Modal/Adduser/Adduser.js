@@ -880,7 +880,7 @@ const Adduser = () => {
             <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-red-400">✕</button>
             </form > 
-                 <div className='flex mx-auto'>
+                 <div className='flex mx-auto justify-center'>
                         <form onSubmit={handelsubmit}>
                                 <div>
                                     <label className="form-control w-full max-w-xs">
@@ -973,7 +973,7 @@ const Adduser = () => {
                                         </label>
                                     
                                 </div> 
-                                <div className='m-2 p-2'>
+                                <div className=' my-2'>
                                     <label className="form-control w-full max-w-xs"> 
                                       
                                         <input type="file" name="img" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
@@ -981,7 +981,7 @@ const Adduser = () => {
                                         </label>
                                     
                                 </div> 
-                                <div className='p-2 m-2'>
+                                <div className=' '>
                                      
                                 <input className='btn w-full max-w-xs btn-primary'  type="submit"  value='Submit' />
                                      

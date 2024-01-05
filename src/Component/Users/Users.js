@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Profile from '../Modal/Profile/Profile';
 import Update from '../Modal/Update/Update'; 
-
+import { JsonToExcel } from 'react-json-to-excel'; 
 
 const Users = () => {
     const [user, Setuser] = useState([]);
@@ -109,7 +109,10 @@ const iurl = 'https://www.shutterstock.com/image-vector/vector-flat-illustration
                 
             </table>
             </div>
-            {/* <JsonToExcel className="dfx "  title="Download excel" data={user}  fileName={`${today} Account Backup`} /> */}
+            <div className='flex mx-auto justify-center '>
+            <JsonToExcel className="dfx "  title="Download excel" data={user}  fileName={`${today} user Backup`} />
+
+            </div>
         </div>
     );
 };
