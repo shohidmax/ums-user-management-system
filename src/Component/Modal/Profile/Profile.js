@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 
 const Profile = ({_id, r}) => {
     const [edit, setEdit] = useState(false);
+    const imageStorageKey='7dec4c10f51e1e22708ccd12b0590a32';
     const countrys = [
         {
          "sn": 1,
@@ -785,6 +786,21 @@ const Profile = ({_id, r}) => {
          "Country_name": "Holy See"
         }
        ];
+       const updatepropic = (e) =>{
+        console.log(e);
+        const formData = new FormData();
+        formData.append('image', e);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res=>res.json())
+        .then(result =>{
+            console.log(result.data.url)
+            handleAddToDamage('image_url', result.data.url)
+        })
+       }
     const handleAddToDamage = (key, value) =>{
         const proceed = window.confirm("Are you sure you want to delete?");
         const ids = _id; 
@@ -792,7 +808,7 @@ const Profile = ({_id, r}) => {
 
         const updatedata = {key, value};
         if (proceed) {
-            const url = `http://localhost:3005/api/data/${ids}`;
+            const url = `https://ums-mncv.onrender.com/api/data/${ids}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -826,7 +842,9 @@ const Profile = ({_id, r}) => {
                     <div className='flex mx-auto justify-center'>
                         <div className="avatar">
                         <div className="w-24 rounded-xl">
-                            <img src={r.image_url} />
+                            { 
+                            !edit? <img src={r.image_url} /> :<input type="file" onBlur={(t) =>{ updatepropic(t.target.files[0]) }}  />
+                            }
                         </div>
                         </div>
                     </div>

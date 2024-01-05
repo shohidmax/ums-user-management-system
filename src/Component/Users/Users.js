@@ -7,16 +7,16 @@ import Update from '../Modal/Update/Update';
 const Users = () => {
     const [user, Setuser] = useState([]);
     useEffect( ()=>{
-        fetch('http://localhost:3005/api/users')
+        fetch('https://ums-mncv.onrender.com/api/users')
         .then(res => res.json())
         .then(data => Setuser(data));
     }, [user]);
     const today = new Date().toJSON().slice(0, 10);
-
+const iurl = 'https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg';
     const handlemidDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete?");
         if (proceed) {
-          const url = `http://localhost:3005/api/userdata/${id}`;
+          const url = `https://ums-mncv.onrender.com/${id}`;
           console.log(url);
           fetch(url, {
             method: "DELETE",
@@ -62,8 +62,8 @@ const Users = () => {
                     <td>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src={r.image_url} alt="Avatar Tailwind CSS Component" />
+                        <div className="mask mask-squircle w-12 h-12"> 
+                            <img src={r.image_url || iurl} alt="Avatar Tailwind CSS Component" />
                         </div>
                         </div>
                         <div>

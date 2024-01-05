@@ -795,6 +795,36 @@ const Adduser = () => {
         ///--------------------
  
     console.log(image);
+    if (!image) {
+        const first_name = e.target.first_name.value;
+                const last_name = e.target.last_name.value;
+                const user_name = e.target.user_name.value;
+                const email = e.target.email.value;
+                const address_1 = e.target.address_1.value;
+                const address_2 = e.target.address_2.value;
+                const mobile_number = e.target.mobile_number.value;
+                const country = e.target.country.value;
+                const office_location = e.target.office_location.value;
+                const update_date = `${day}/${month + 1}/${year}`;
+                const image_url = 'https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg';
+                const data = { first_name, last_name, user_name, email, address_1, address_2, mobile_number, country, office_location, update_date,image_url}
+          
+                // send data to the server
+                fetch('https://ums-mncv.onrender.com/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json' 
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    toast.success('User added successfully!!!'); 
+                    e.target.reset();
+                })
+
+        
+    } else {
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
@@ -819,7 +849,7 @@ const Adduser = () => {
                 const data = { first_name, last_name, user_name, email, address_1, address_2, mobile_number, country, office_location, update_date,image_url}
           
                 // send data to the server
-                fetch('http://localhost:3005/api/users', {
+                fetch('https://ums-mncv.onrender.com/api/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json' 
@@ -828,13 +858,14 @@ const Adduser = () => {
                 })
                 .then(res => res.json())
                 .then(data =>{
-                    toast.success('lotary added successfully!!!'); 
+                    toast.success('User added successfully!!!'); 
                     e.target.reset();
                 })
 
             }
             
         }) 
+    }
 
  
        }
